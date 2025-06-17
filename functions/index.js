@@ -6,7 +6,7 @@ admin.initializeApp();
 
 const db = admin.firestore();
 
-// 1. POST: Criar uma nova senha
+// 1. POST
 exports.createPassword = functions.https.onCall(async (data, context) => {
     // Verifica se o usuário está autenticado
     if (!context.auth) {
@@ -17,7 +17,7 @@ exports.createPassword = functions.https.onCall(async (data, context) => {
     }
 
     const uid = context.auth.uid;
-    const { passwordValue, description } = data; // Você pode enviar mais campos, como uma descrição
+    const { passwordValue, description } = data; 
 
     if (!passwordValue) {
         throw new functions.https.HttpsError(
@@ -70,7 +70,7 @@ exports.getPasswords = functions.https.onCall(async (data, context) => {
     }
 });
 
-// 3. PUT/PATCH: Atualizar uma senha existente
+// 3. PUT/PATCH
 exports.updatePassword = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError(
@@ -106,7 +106,7 @@ exports.updatePassword = functions.https.onCall(async (data, context) => {
     }
 });
 
-// 4. DELETE: Deletar uma senha
+// 4. DELETE
 exports.deletePassword = functions.https.onCall(async (data, context) => {
     if (!context.auth) {
         throw new functions.https.HttpsError(
